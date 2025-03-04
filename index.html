@@ -1,216 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #f8e1d6;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .sidebar {
-            width: 250px;
-            background-color: #F1D5BB;
-            padding: 20px;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-        }
-
-        .menu-item {
-            padding: 15px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-
-        .menu-item a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .sidebar .menu-item {
-            color: #333;
-            font-size: 16px;
-        }
-
-        .sidebar .menu-item.active {
-            background-color: #c4b5a5;
-        }
-
-        .sidebar .menu-item:hover {
-            background-color: #e0d0c0;
-        }
-        .profile {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 15px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-        .btn {
-            margin: 1em 0em;
-            background: pink;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background: #e8b0b0;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/Project addla/Project/Member/styleLogin.css">
 </head>
-<body>
-    <div class="sidebar">
-        <div class="profile">
-            <img src="/Project addla/Project/img/profile.png" alt="Profile" width="80">
-            <p>วันเพ็ญ แซ่เล้า</p>
-            <p>เจ้าของร้าน</p>
+<body style="background-image:url('/img/background.png')">
+    <div class="bg-container">
+        <a href="#"></a>
+    </div>    
+    <div class="container">
+        <div class="form-card">
+        <h2>เข้าสู่ระบบ</h2>
+        <form action="#">
+            <div class="input-group">
+            <input type="text" id="username" placeholder="ชื่อผู้ใช้">
+            </div>
+            <div class="input-group">
+            <input type="password" id="password" placeholder="รหัสผ่าน">
+            <div class="forget-the-password">
+                <a href="/Project addla/Project/Member/forgotpass.html">ลืมรหัสผ่าน</a>
+            </div>
+            </div>
+            <a href="/Project addla/Project/user  management/user.html">
+                <button type="button"class="btn-login">เข้าสู่ระบบ</button>
+            </a>
+                <div class="signup-link">
+            <a href="/Project addla/Project/Member/register.html">สมัครสมาชิก</a>
+            </div>
+        </form>
         </div>
-        <aside class="sidebar">
-            <nav>
-                <div class="menu-item active">
-                    <a href="/Project addla/Project/user  management/user.html" class="button">User Management </a>
-                </div>
-                <div class="menu-item">
-                    <a href="/Project addla/Project/stock/stock.html" class="button">stock managewment</a>
-                </div>
-                <div class="menu-item">
-                    <a href="/Project addla/Project/Seles report/selesreport.html" class="button">Sales report</a>
-                </div>
-            </nav>
-        </aside>
-    </div>
-    <div class="content">
-        <h2>👥 User Management</h2>
-        <button class="btn" onclick="openModal()">+ เพิ่มพนักงาน</button>
-        <table>
-            <thead>
-                <tr>
-                    <th>EmployeeID</th>
-                    <th>ชื่อ-นามสกุล</th>
-                    <th>ตำแหน่ง</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="userTable">
-                <tr>
-                    <td>00023</td>
-                    <td>นาย สมปอง XXX</td>
-                    <td>พ่อครัว</td>
-                    <td>
-                        <button class="btn" onclick="editUser(this)">Edit</button>
-                        <button class="btn" onclick="deleteUser(this)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="modal" id="userModal">
-        <h3>Edit Employee</h3>
-        <label>Employee ID: <input type="text" id="empId"></label><br>
-        <label>Name: <input type="text" id="empName"></label><br>
-        <label>Position: <input type="text" id="empRole"></label><br>
-        <button class="btn" onclick="saveUser()">Save</button>
-        <button class="btn" onclick="closeModal()">Close</button>
-    </div>
-    
-    <script>
-        let editRow = null;
-
-        function openModal() {
-            document.getElementById('userModal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('userModal').style.display = 'none';
-            editRow = null;
-        }
-
-        function addUser() {
-            let empId = document.getElementById('empId').value;
-            let empName = document.getElementById('empName').value;
-            let empRole = document.getElementById('empRole').value;
-            let table = document.getElementById('userTable');
-            let row = table.insertRow();
-            row.innerHTML = `<td>${empId}</td><td>${empName}</td><td>${empRole}</td>
-                             <td><button class='btn' onclick='editUser(this)'>Edit</button>
-                             <button class='btn' onclick='deleteUser(this)'>Delete</button></td>`;
-            closeModal();
-        }
-
-        function editUser(button) {
-            editRow = button.parentElement.parentElement;
-            document.getElementById('empId').value = editRow.cells[0].innerText;
-            document.getElementById('empName').value = editRow.cells[1].innerText;
-            document.getElementById('empRole').value = editRow.cells[2].innerText;
-            openModal();
-        }
-
-        function saveUser() {
-            if (editRow) {
-                editRow.cells[0].innerText = document.getElementById('empId').value;
-                editRow.cells[1].innerText = document.getElementById('empName').value;
-                editRow.cells[2].innerText = document.getElementById('empRole').value;
-            }
-            closeModal();
-        }
-
-        function deleteUser(button) {
-            let row = button.parentElement.parentElement;
-            row.remove();
-        }
-    </script>
+  </div>
 </body>
 </html>
